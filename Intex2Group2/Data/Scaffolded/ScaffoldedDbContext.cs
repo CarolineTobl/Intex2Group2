@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Intex2Group2.Data.Scaffolded;
 
-public partial class ScaffoldedDbContext : DbContext
+public partial class ScaffoldedDbContext : IdentityDbContext
 {
     public ScaffoldedDbContext(DbContextOptions<ScaffoldedDbContext> options)
         : base(options)
@@ -35,6 +36,8 @@ public partial class ScaffoldedDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<AspNetRole>(entity =>
         {
             entity.HasNoKey();
