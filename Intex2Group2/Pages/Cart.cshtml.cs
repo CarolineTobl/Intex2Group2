@@ -32,9 +32,9 @@ namespace Intex2Group2.Pages
 
             if (prod != null) 
             {
-                //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
                 Cart.AddItem(prod, 1);
-                //HttpContext.Session.SetJson("cart", Cart);
+                HttpContext.Session.SetJson("cart", Cart);
             }
 
             return RedirectToPage(new { returnUrl = returnUrl });
