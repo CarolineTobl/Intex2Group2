@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Intex2Group2.Data.Scaffolded;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intex2Group2.Models
 {
@@ -6,6 +7,6 @@ namespace Intex2Group2.Models
     {
         public IntexContext (DbContextOptions<IntexContext> options) : base(options) { }
 
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 }

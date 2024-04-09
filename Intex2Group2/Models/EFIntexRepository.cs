@@ -1,42 +1,15 @@
-﻿namespace Intex2Group2.Models
+﻿using Intex2Group2.Data.Scaffolded;
+
+namespace Intex2Group2.Models
 {
     public class EFIntexRepository : IIntexRepository
     {
-        //private IntexContext _context;
-        /*        public EFIntexRepository(IntexContext temp) 
-                {
-                    _context = temp;
-                }*/
-        private readonly List<Project> _projects = new List<Project>();
-
-        public EFIntexRepository()
+        private ScaffoldedDbContext _context;
+        public EFIntexRepository(ScaffoldedDbContext temp) 
         {
-            // Add dummy data
-            _projects.Add(new Project
-            {
-                ProjectId = 1,
-                ProjectName = "Project 1",
-                ProgramName = "Program A",
-                ProjectType = "Type A",
-                ProjectImpact = 10,
-                ProjectInstallation = DateTime.Now,
-                ProjectPhase = "Phase 1"
-            });
-
-            _projects.Add(new Project
-            {
-                ProjectId = 2,
-                ProjectName = "Project 2",
-                ProgramName = "Program B",
-                ProjectType = "Type B",
-                ProjectImpact = 20,
-                ProjectInstallation = DateTime.Now.AddDays(1),
-                ProjectPhase = "Phase 2"
-            });
+            _context = temp;
         }
 
-        public IQueryable<Project> Projects => _projects.AsQueryable();
-
-        //public IQueryable<Project> Projects => _context.Projects;
+        public IQueryable<Data.Scaffolded.Product> Products => _context.Products;
     }
 }

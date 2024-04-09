@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Intex2Group2.Infrastructure;
 using Intex2Group2.Models;
+using Intex2Group2.Data.Scaffolded;
 
 namespace Intex2Group2.Pages
 {
@@ -26,22 +27,22 @@ namespace Intex2Group2.Pages
 
         public IActionResult OnPost(int projectId, string returnUrl) 
         {
-            Project proj = _repo.Projects
-                .FirstOrDefault(x => x.ProjectId == projectId);
+            Data.Scaffolded.Product prod = _repo.Products
+                .FirstOrDefault(x => x.ProductId == projectId);
 
-            if (proj != null) 
+            if (prod != null) 
             {
                 //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
-                Cart.AddItem(proj, 1);
+                Cart.AddItem(prod, 1);
                 //HttpContext.Session.SetJson("cart", Cart);
             }
 
             return RedirectToPage(new { returnUrl = returnUrl });
         }
 
-        public IActionResult OnPostRemove (int projectId, string returnUrl)
+        public IActionResult OnPostRemove (int productId, string returnUrl)
         {
-            Cart.RemoveLine(Cart.Lines.First(x => x.Project.ProjectId == projectId).Project);
+            Cart.RemoveLine(Cart.Lines.First(x => x.Product.ProductId == productId).Product);
 
             return RedirectToPage(new {returnUrl = returnUrl});
         }

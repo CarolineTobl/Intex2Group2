@@ -14,10 +14,10 @@ namespace Intex2Group2.Components
         }
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectedProjectType = RouteData?.Values["projectType"];
+            ViewBag.SelectedProjectType = RouteData?.Values["productType"];
 
-            var projectTypes = _waterRepo.Projects
-                .Select(x => x.ProjectType)
+            var projectTypes = _waterRepo.Products
+                .Select(x => x.Name)
                 .Distinct()
                 .OrderBy(x => x);
 

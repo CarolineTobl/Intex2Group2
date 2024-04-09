@@ -20,13 +20,13 @@
         @foreach (var l in Model.Cart?.Lines ?? Enumerable.Empty<Cart.CartLine>())
         {
             <tr>
-                <td class="text-left">@l.Project.ProjectName</td>
-                <td class="text-center">@l.Quantity</td>
+                <td class="text-left">@l.Product.Name</td>
+                <td class="text-center">@l.Product.Year</td>
                 <td class="text-right">$25</td>
-                <td class="text-right">@((l.Quantity * 25).ToString("c"))</td>
+                <td class="text-right">@((l.Product.NumParts * 25).ToString("c"))</td>
                 <td class="text-center">
                     <form asp-page-handler="Remove" method="post">
-                        <input type="hidden" name="ProjectId" value="@l.Project.ProjectId" />
+                        <input type="hidden" name="ProjectId" value="@l.Product.ProductId" />
                         <input type="hidden" name="returnUrl" value="@Model?.ReturnUrl" />
                         <button class="btn btn-sm btn-danger">
                             Remove

@@ -1,8 +1,10 @@
-﻿namespace Intex2Group2.Models
+﻿using Intex2Group2.Data.Scaffolded;
+
+namespace Intex2Group2.Models
 {
     public interface IIntexRepository
     {
-        public IQueryable<Project> Projects { get; }
+        public IQueryable<Data.Scaffolded.Product> Products { get; }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Intex2Group2.Data.Scaffolded;
 using Intex2Group2.Infrastructure;
 
 namespace Intex2Group2.Models
@@ -21,13 +22,13 @@ namespace Intex2Group2.Models
         [JsonIgnore]
         public ISession? Session { get; set; }
 
-        public override void AddItem(Project p, int quantity)
+        public override void AddItem(Product p, int quantity)
         {
             base.AddItem(p, quantity);
             Session?.SetJson("Cart", this);
         }
 
-        public override void RemoveLine(Project p)
+        public override void RemoveLine(Product p)
         {
             base.RemoveLine(p);
             Session?.SetJson("Cart", this);

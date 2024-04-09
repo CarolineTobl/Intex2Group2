@@ -14,7 +14,7 @@ namespace Intex2Group2.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index(int pageNum, string projectType)
+        public IActionResult Index(int pageNum)
         {
 
             int pageSize = 5;
@@ -23,9 +23,9 @@ namespace Intex2Group2.Controllers
             {
 
 
-                Projects = _repo.Projects
-                .Where(x => projectType == x.ProjectType || projectType == null)
-                .OrderBy(x => x.ProjectName)
+                Products = _repo.Products
+                //.Where(x => projectType == x.Name || projectType == null)
+                .OrderBy(x => x.Name)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
@@ -34,10 +34,11 @@ namespace Intex2Group2.Controllers
                     CurrentPage = pageNum,
                     ItemsPerPage = pageSize,
                     // if project type is null, get a count of all projects, if filtering then only get the count of the filtered projects
-                    TotalItems = projectType == null ? _repo.Projects.Count() : _repo.Projects.Where(x => x.ProjectType == projectType).Count()
+                    TotalItems = 37
+                    //projectType == null ? _repo.Products.Count() : _repo.Products.Where(x => x.ProjectType == projectType).Count()
                 },
 
-                CurrentProjectType = projectType
+                //CurrentProjectType = projectType
             };
 
             /*            var projectData = _repo.Projects

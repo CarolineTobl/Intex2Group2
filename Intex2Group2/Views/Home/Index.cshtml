@@ -1,11 +1,12 @@
-﻿@{
+﻿@using Intex2Group2.Data.Scaffolded
+@{
     ViewData["Title"] = "Home Page";
 }
 @model ProjectsListViewModel
 
 <h1>Brick House</h1>
 
-@foreach (Project p in Model.Projects)
+@foreach (Product p in Model.Products)
 {
     <partial name="ProjectSummary" model="p" />
 }

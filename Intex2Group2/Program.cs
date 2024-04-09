@@ -1,4 +1,5 @@
 using Intex2Group2.Data;
+using Intex2Group2.Data.Scaffolded;
 using Intex2Group2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,14 +16,14 @@ namespace Intex2Group2
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            builder.Services.AddDbContext<ScaffoldedDbContext>(options =>
                 options.UseSqlServer(connectionString));
                 //options.UseSqlite(connectionString));
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ScaffoldedDbContext>();
             builder.Services.AddControllersWithViews();
 
             //added

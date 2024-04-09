@@ -1,4 +1,6 @@
-﻿namespace Intex2Group2.Models
+﻿using Intex2Group2.Data.Scaffolded;
+
+namespace Intex2Group2.Models
 {
     public class Cart
     {
@@ -6,18 +8,18 @@
         public List<CartLine> Lines { get; set; } = new List<CartLine>();
 
         //pass in project and quantity
-        public virtual void AddItem(Project p, int quantity)
+        public virtual void AddItem(Product p, int quantity)
         {
             // build an instance where it's equal to the projectID
             CartLine? line = Lines
-                .Where(x => x.Project.ProjectId == p.ProjectId)
+                .Where(x => x.Product.ProductId == p.ProductId)
                 .FirstOrDefault();
 
             if (line == null) 
             {
                 Lines.Add(new CartLine()
                 {
-                    Project = p,
+                    Product = p,
                     Quantity = quantity
                 });
             }
@@ -27,7 +29,7 @@
             }
         }
 
-        public virtual void RemoveLine(Project p) => Lines.RemoveAll(x => x.Project.ProjectId == p.ProjectId);
+        public virtual void RemoveLine(Product p) => Lines.RemoveAll(x => x.Product.ProductId == p.ProductId);
 
         public virtual void Clear() => Lines.Clear();
 
@@ -42,7 +44,7 @@
         public class CartLine
         {
             public int CartlineID { get; set; }
-            public Project Project { get; set; }
+            public Product Product { get; set; }
             public int Quantity { get; set; }
         }
     }
